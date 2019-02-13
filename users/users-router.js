@@ -68,8 +68,9 @@ router.put("/:id", uppercase, async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
+  console.log(req.params.id);
   try {
-    const user = await User.remove(req.params.id);
+    const user = await Users.remove(req.params.id);
     if (user > 0) {
       res.status(200).json({ message: "The user has been deleted." });
     } else {
