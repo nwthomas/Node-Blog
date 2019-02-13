@@ -56,7 +56,10 @@ router.put("/:id", uppercase, async (req, res) => {
   try {
     const user = await Users.update(req.params.id, req.body);
     if (user) {
-      res.status(200).json(user);
+      res.status(200).json({
+        message: "The user was updated successfully",
+        numUsersUpdated: user
+      });
     } else {
       res.status(404).json({ message: "The user could not be found." });
     }
@@ -72,7 +75,9 @@ router.delete("/:id", async (req, res) => {
   try {
     const user = await Users.remove(req.params.id);
     if (user > 0) {
-      res.status(200).json({ message: "The user has been deleted." });
+      res
+        .status(200)
+        .json({ message: "The user has been deleted.", numUsersDeleted: user });
     } else {
       res.status(404).json({ message: "The user could not be found." });
     }
