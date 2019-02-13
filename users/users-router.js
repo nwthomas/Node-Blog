@@ -34,4 +34,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  console.log(req);
+  try {
+    const user = await Users.insert(req.body);
+    res.status(201).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error adding the user."
+    });
+  }
+});
+
 module.exports = router;
