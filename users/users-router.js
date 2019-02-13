@@ -5,7 +5,9 @@ const Users = require("../data/helpers/userDb.js");
 const router = express.Router();
 
 function uppercase(req, res, next) {
-  req.body.name = req.body.name.toUpperCase();
+  req.body.name =
+    req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+  // This is to capitalize first letter - I initially had req.body.name.toUpperCase() if that's actually what the README wanted... Slightly unclear
   next();
 }
 
