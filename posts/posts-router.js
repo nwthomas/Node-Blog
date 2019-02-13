@@ -1,7 +1,6 @@
 const express = require("express");
 
 const Posts = require("../data/helpers/postDb.js");
-const Users = require("../data/helpers/userDb.js");
 
 const router = express.Router();
 
@@ -19,7 +18,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const posts = await Users.getUserPosts(req.params.id);
+    const posts = await Posts.getById(req.params.id);
     if (posts) {
       res.status(200).json(posts);
     } else {
