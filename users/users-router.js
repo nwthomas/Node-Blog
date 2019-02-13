@@ -58,7 +58,7 @@ router.get("/posts/:id", async (req, res) => {
 
 router.post("/", uppercase, async (req, res) => {
   if (!req.body.name) {
-    res.status();
+    res.status(); // Finish
   }
   try {
     const user = await Users.insert(req.body);

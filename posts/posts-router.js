@@ -32,4 +32,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  if (!req.body.text || !req.body.user_id) {
+    res.status(); // Finish
+  }
+  try {
+    const post = await Posts.insert(req.body);
+    res.status(201).json(post);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error adding the post."
+    });
+  }
+});
+
 module.exports = router;
